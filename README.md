@@ -73,5 +73,10 @@ them first as this library primarily serves https://github.com/logseq/logseq.
 
 See LICENSE.md
 
+## Development
+
+Tasks are linted with https://github.com/clj-kondo/clj-kondo and dependencies are kept
+up to date with https://github.com/liquidz/antq
+
 ## Additional Links
 * https://github.com/logseq/logseq/blob/master/bb.edn uses this library
