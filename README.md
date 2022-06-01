@@ -75,8 +75,9 @@ See LICENSE.md
 
 ## Development
 
-Tasks are linted with https://github.com/clj-kondo/clj-kondo and dependencies are kept
-up to date with https://github.com/liquidz/antq
+Tasks are linted with https://github.com/clj-kondo/clj-kondo using `clojure
+-M:clj-kondo --lint src`. Dependencies are kept up to date with
+https://github.com/liquidz/antq using `clojure -M:outdated`.
 
 ## Additional Links
 * https://github.com/logseq/logseq/blob/master/bb.edn uses this library

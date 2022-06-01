@@ -28,4 +28,4 @@ jobs:
         run: clojure -M:clj-kondo --lint src
 
       - name: Check outdated dependencies
-        uses: liquidz/antq-action@master
+        uses: liquidz/antq-action@main
