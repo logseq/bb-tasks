@@ -1,0 +1,20 @@
+;; This bb.edn demonstrates how these tasks can
+;; used. Running tasks from within this repo is
+;; not recommended
+{:paths ["src"]
+ :deps
+ ;; For example nbb scripts
+ {logseq/graph-parser
+  {:local/root "../logseq/deps/graph-parser"}
+  local/deps
+  {:local/root "."}}
+
+ :pods
+ {org.babashka/fswatcher {:version "0.0.3"}}
+
+ :tasks
+ {nbb:watch
+  logseq.bb-tasks.nbb.watch/watch
+
+  nbb:portal-watch
+  logseq.bb-tasks.nbb.watch/portal-watch}}

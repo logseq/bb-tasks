@@ -1,0 +1,8 @@
+{
+  "name": "graph-parser-examples",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "mldoc": "^1.3.9"
+  }
+}
