@@ -25,6 +25,20 @@ Define the tasks to import from this library in `bb.edn` e.g.
 
 Tasks are described by namespace.
 
+### `logseq.bb-tasks.lint.large-vars`
+
+#### `logseq.bb-tasks.lint.large-vars/lint`
+
+Lints codebases for large vars. Large vars make it difficult for teams to
+maintain and understand codebases.
+
+### `logseq.bb-tasks.nbb.test`
+
+#### `logseq.bb-tasks.nbb.test/load-all-namespaces`
+
+Verify that all namespaces in a directory can be required by nbb-logseq. Useful
+for ensuring cljs code continues to be compatible with nbb(-logseq).
+
 ### `logseq.bb-tasks.nbb.watch`
 
 These tasks demonstrate that nbb-logseq scripts can run when a graph is saved to
