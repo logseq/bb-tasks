@@ -21,13 +21,31 @@ Define the tasks to import from this library in `bb.edn` e.g.
  logseq.bb-tasks.nbb.watch/watch}
 ```
 
+Some tasks require bb pods. Babashka doesn't yet support providing them through
+a gitlib dependency. This means that you will need to add the necessary `:pods`
+to your `bb.edn`. See `bb.edn` for pods and versions that are known to work.
+
 ## Usage
 
 Tasks are described by namespace.
 
+### `logseq.bb-tasks.lint.carve`
+
+#### `logseq.bb-tasks.lint.carve/-main`
+
+Finds unused vars with https://github.com/borkdude/carve. Also provides more
+friendly commandline interface as the default config is preserved when
+additional options are given.
+
+### `logseq.bb-tasks.lint.datalog`
+
+#### `logseq.bb-tasks.lint.datalog/lint-rules`
+
+Lints given datalog rules for valid parse-ability and unbound variables.
+
 ### `logseq.bb-tasks.lint.large-vars`
 
-#### `logseq.bb-tasks.lint.large-vars/lint`
+#### `logseq.bb-tasks.lint.large-vars/-main`
 
 Lints codebases for large vars. Large vars make it difficult for teams to
 maintain and understand codebases.
@@ -45,8 +63,9 @@ These tasks demonstrate that nbb-logseq scripts can run when a graph is saved to
 provide useful information to a Logseq user. When these scripts use the graph-parser, these scripts
 start to behave like intelligent assistants as they understand the data in your file as well as the Logseq app does.
 
-Tasks in this namespace require installing `nbb-logseq` e.g. `npm install -g @logseq/nbb-logseq`.
-They also require the fswatcher pod to be specified in bb.edn's `:pods` e.g. `org.babashka/fswatcher {:version "0.0.3"}`. For the examples in this ns, there is a one time setup of `cd examples && yarn install && cd -`.
+Tasks in this namespace require installing `nbb-logseq` e.g. `npm install -g
+@logseq/nbb-logseq`. For the examples in this ns, there is a one time setup of
+`cd examples && yarn install && cd -`.
 
 #### `logseq.bb-tasks.nbb.watch/watch`
 

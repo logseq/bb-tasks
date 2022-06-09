@@ -2,28 +2,36 @@
   "Provides lint task to detect large vars. Large vars make it difficult for
   teams to maintain and understand codebases."
   (:require [pod.borkdude.clj-kondo :as clj-kondo]
+            [babashka.fs :as fs]
             [clojure.pprint :as pprint]
             [clojure.edn :as edn]
-            [clojure.set :as set]))
+            [clojure.set :as set]
+            [logseq.bb-tasks.util :as util]))
 
 (def default-config
-  {:max-lines-count 40
+  {:max-lines-count 35
    :lang :cljs
-   ;; Vars with these metadata flags are allowed. Name should indicate the reason
-   ;; it is allowed
-   :metadata-exceptions #{:large-vars/data-var
-                          ;; TODO: Address vars tagged with cleanup-todo. These
-                          ;; are left mostly because they are not high priority
-                          ;; or not well understood
-                          :large-vars/cleanup-todo}})
+   ;; Vars with these metadata flags are allowed. Name should indicate the
+   ;; reason it is allowed
+   :metadata-exceptions #{:large-vars/data-var}})
 
-(defn lint
+(defn- read-config
+  [config-arg]
+  (merge-with
+   (fn deep-merge [old new] (if (coll? new) (into old new) new))
+   default-config
+   (:large-vars (util/read-tasks-config))
+   (some->> config-arg edn/read-string (merge default-config))))
+
+(defn -main
   "Lints given classpath for vars that are too large.
 Takes optional second argument which is EDN config."
   [& args]
   (let [paths [(or (first args) "src")]
-        config (or (some->> (second args) edn/read-string (merge default-config))
-                   default-config)
+        _ (doseq [f paths]
+            (when-not (fs/exists? f)
+              (throw (ex-info (str f " is not a valid path") {}))))
+        config (read-config (second args))
         {{:keys [var-definitions]} :analysis}
         (clj-kondo/run!
          {:lint paths

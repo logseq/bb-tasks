@@ -29,3 +29,6 @@ jobs:
 
       - name: Check outdated dependencies
         uses: liquidz/antq-action@main
+
+      - name: Lint for vars that are too large
+        run: bb lint:large-vars

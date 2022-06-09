@@ -10,11 +10,25 @@
   {:local/root "."}}
 
  :pods
- {org.babashka/fswatcher {:version "0.0.3"}}
+ {org.babashka/fswatcher {:version "0.0.3"}
+  clj-kondo/clj-kondo {:version "2022.02.09"}}
 
  :tasks
  {nbb:watch
   logseq.bb-tasks.nbb.watch/watch
 
   nbb:portal-watch
-  logseq.bb-tasks.nbb.watch/portal-watch}}
+  logseq.bb-tasks.nbb.watch/portal-watch
+
+  lint:large-vars
+  logseq.bb-tasks.lint.large-vars/-main
+
+  lint:carve
+  logseq.bb-tasks.lint.carve/-main
+
+  lint:rules
+  {:doc "Example rules"
+   :requires ([logseq.bb-tasks.lint.datalog :as datalog])
+   :task (datalog/lint-rules
+          ;; These should be your app's rules
+          [])}}}

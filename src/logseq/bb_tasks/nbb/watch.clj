@@ -30,7 +30,7 @@ NOTE: If the script fails, the watcher stops watching"
 
 (defn- run-script
   [nbb-script dir file]
-  (shell "nbb-logseq --debug -cp" (classpath/get-classpath) nbb-script dir file))
+  (shell "nbb-logseq -cp" (classpath/get-classpath) nbb-script dir file))
 
 (defn watch
   "Watch a graph dir and nbb script and run nbb script when either changes.
