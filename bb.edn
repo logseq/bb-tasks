@@ -4,8 +4,8 @@
 {:paths ["src"]
  :deps
  ;; For example nbb scripts
- {logseq/graph-parser
-  {:local/root "../logseq/deps/graph-parser"}
+ {#_logseq/graph-parser
+  #_{:local/root "../logseq/deps/graph-parser"}
   local/deps
   {:local/root "."}}
 
@@ -27,8 +27,7 @@
   logseq.bb-tasks.lint.carve/-main
 
   lint:rules
-  {:doc "Example rules"
-   :requires ([logseq.bb-tasks.lint.datalog :as datalog])
+  {:requires ([logseq.bb-tasks.lint.datalog :as datalog])
    :task (datalog/lint-rules
           ;; These should be your app's rules
           [])}}}
