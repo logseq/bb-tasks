@@ -1,4 +1,5 @@
 (ns logseq.bb-tasks.lint.datalog
+  "Datalog linters for rules. Catches things that clj-kondo doesn't currently"
   (:require [datalog.parser.impl :as parser-impl]
             [dlint.core :as dlint]))
 

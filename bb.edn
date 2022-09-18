@@ -26,6 +26,9 @@
   lint:carve
   logseq.bb-tasks.lint.carve/-main
 
+  lint:ns-docstrings
+  logseq.bb-tasks.lint.ns-docstrings/-main
+
   lint:rules
   {:requires ([logseq.bb-tasks.lint.datalog :as datalog])
    :task (datalog/lint-rules

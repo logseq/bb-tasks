@@ -1,4 +1,5 @@
 (ns logseq.bb-tasks.util
+  "Misc util fns"
   (:require [clojure.edn :as edn]))
 
 (defn read-tasks-config
