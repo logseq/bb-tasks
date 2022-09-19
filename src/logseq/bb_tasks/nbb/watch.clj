@@ -8,7 +8,7 @@
             [portal.api :as p])
   (:import (java.time Instant)))
 
-(def last-file (atom nil))
+(def ^:private last-file (atom nil))
 
 (defn- watch-with-fn
   "Runs watch fn when given dir or script is written to.

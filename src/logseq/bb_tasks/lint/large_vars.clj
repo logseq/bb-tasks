@@ -8,7 +8,7 @@
             [clojure.set :as set]
             [logseq.bb-tasks.util :as util]))
 
-(def default-config
+(def ^:private default-config
   {:max-lines-count 35
    :lang :cljs
    ;; Vars with these metadata flags are allowed. Name should indicate the
