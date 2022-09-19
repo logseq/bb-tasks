@@ -1,7 +1,8 @@
 (ns logseq.bb-tasks.lint.ns-docstrings
   "Provides lint task to detect all desired namespaces are documented.
   Documented namespaces help teams distribute their knowledge"
-  (:require [pod.borkdude.clj-kondo :as clj-kondo]))
+  (:require [pod.borkdude.clj-kondo :as clj-kondo]
+            [logseq.bb-tasks.util :as util]))
 
 (defn- missed-docstrings [paths {:keys [ignore-regex]}]
   (let [analysis (:analysis (clj-kondo/run! {:lint paths
@@ -24,8 +25,13 @@
         (System/exit 1))
       (println "\nAll namespaces are documented!"))))
 
+(defn- read-config
+  []
+  (:ns-docstrings (util/read-tasks-config)))
+
 (defn -main
   "Lint given classpath for namespaces missing docstrings."
   [& args]
-  (let [paths (or (first args) "src")]
-    (missed-docstrings [paths] {})))
+  (let [paths (or (first args) "src")
+        config (read-config)]
+    (missed-docstrings [paths] config)))
