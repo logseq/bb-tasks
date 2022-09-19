@@ -31,7 +31,10 @@
                                 var-definitions))]
     (set/difference should-be-private-vars private-vars)))
 
-(defn -main [& args]
+(defn -main
+  "Lint given classpaths for vars that should be private. Should be is
+  determined by if a var has any usage outside its own ns"
+  [& args]
   (let [path (or (first args) "src")
         vars-to-make-private (find-public-vars-to-make-private [path])]
     (if (seq vars-to-make-private)
