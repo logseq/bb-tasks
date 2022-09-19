@@ -21,7 +21,7 @@ jobs:
       - name: Set up Clojure
         uses: DeLaGuardo/setup-clojure@master
         with:
-          cli: 1.11.1.1161
+          cli: 1.11.1.1165
           bb: 0.8.2
 
       - name: Run clj-kondo lint
