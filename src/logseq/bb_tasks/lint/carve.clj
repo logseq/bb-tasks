@@ -16,7 +16,7 @@ in an optional string of options"
   [& args]
   (let [default-opts (if (fs/exists? ".carve/config.edn")
                        (slurp ".carve/config.edn")
-                       "{:paths [\"src\"]}")
+                       "{:paths [\"src\"] :report {:format :ignore}}")
          opts (if-let [more-opts (first args)]
                 (pr-str (merge (select-keys (edn/read-string default-opts) [:paths :api-namespaces])
                                (edn/read-string more-opts)))
