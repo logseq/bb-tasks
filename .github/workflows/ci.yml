@@ -35,3 +35,6 @@ jobs:
 
       - name: Lint for undocumented namespaces
         run: bb lint:ns-docstrings
+
+      - name: Lint to minimize public vars
+        run: bb lint:minimize-public-vars
