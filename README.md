@@ -97,6 +97,31 @@ $ bb nbb:portal-watch /path/to/graph examples/print_file_query.cljs
 Watching /path/to/graph ...
 ```
 
+### `logseq.bb-tasks.nbb.cached-db`
+
+Enables bb tasks to call any nbb script with an up-to-date cached db of the
+current graph directory, without the user needing to do anything to manage the
+cache. This is useful for a user that wants to run multiple ~1s queries on a
+graph from the commandline. The bb task provides the equivalent of the
+`~/.logseq/graphs/` cache without having to rely on the Logseq editor. If a user
+git commits the cached db, nbb CI processes also benefit from the speed up.
+
+To set this up in your graph:
+- Create a `script/` directory and copy all the files in [this example's script/](https://github.com/logseq/docs/tree/master/script) to it.
+- `cd script && yarn install && cd -`
+- Copy [this example's bb.edn](https://github.com/logseq/docs/blob/master/bb.edn) to bb.edn
+- Change the implementation of `script/query.cljs` to query/queries specific to your graph.
+  - Note that you need to call `(cached-db/read-db)` to read the cached db.
+- Run `bb query` to call your nbb script
+  - Note the first time takes time as it builds the cache. Subsequent calls will be about a second.
+
+#### `logseq.bb-tasks.nbb.cached-db/ensure-latest-cached-db`
+
+This task should be used in the `:depends` of a task calling a nbb script. The
+task ensures that the transit db cache is rebuilt if any graph file is detected
+to be outdated by their timestamp. Cache rebuilding is slow as the full cache
+must be rebuilt.
+
 ## Contributing
 
 Bug reports are welcome. For feature contributions, please discuss
