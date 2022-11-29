@@ -7,8 +7,13 @@
 
 (defn- find-public-vars-to-make-private [paths]
   (let [analysis (:analysis (clj-kondo/run! {:lint paths
-                                             :config {:output {:analysis true}}}))
+                                             :config {:output {:analysis {:var-definitions {:meta true}}}}}))
         {:keys [var-usages var-definitions]} analysis
+        var-meta-map (into {}
+                           (keep #(when (:meta %)
+                                    [(str (:ns %) "/" (:name %))
+                                     (:meta %)])
+                                 var-definitions))
         indexed-usages
         (reduce (fn [acc {:keys [to name from from-var]  :as usage}]
                   (let [var (str to "/" name)]
@@ -16,8 +21,13 @@
                       ;; an entry already exists
                       (if (or (get acc var)
                               ;; multi-arity false positive
-                              (= var (str from "/" from-var)))
+                              (= var (str from "/" from-var))
+                              ;; var has :api flag to indicate it is a
+                              ;; purposefully public fn. Chose :api so it can be
+                              ;; used across tools
+                              (get-in var-meta-map [var :api]))
                         acc
+                        ;; Would be more explicit if this was set to :private
                         (assoc acc var []))
                       ;; only save usages that are external to the var's namespace
                       (update acc var (fnil conj []) usage))))

@@ -11,7 +11,7 @@ encapsulated in this ns"
   "Cache file for storing transit db"
   ".cached-db-transit.json")
 
-(defn read-db
+(defn ^:api read-db
   "Reads db from cache file"
   []
   (dt/read-transit-str (fs/readFileSync cache-file)))
