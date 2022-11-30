@@ -64,12 +64,10 @@ for ensuring cljs code continues to be compatible with nbb(-logseq).
 
 #### `logseq.bb-tasks.nbb.cached-db`
 
-Enables bb tasks to call nbb scripts with an up-to-date, incrementally cached db
-of the current graph directory. With this cache, scripts can enjoy 1-2s query
-times, even for large graphs. The underlying bb task provides a self-managed
-implementation of the `~/.logseq/graphs/` cache and thus is independent of the
-Logseq editor. If a user git commits the cached db, nbb CI processes also
-benefit from the speed up.
+Enables bb tasks to call nbb scripts with an up-to-date cached db
+of the current graph directory. The underlying bb task manages a cache like the
+one Logseq editor builds in `~/.logseq/graphs/`. If a user git commits the
+cached db, nbb CI processes also benefit from the speed up.
 
 To set this up in your graph:
 - Create a `script/` directory and copy all the files in [this example's script/](https://github.com/logseq/docs/tree/master/script) to it.
@@ -87,7 +85,7 @@ This task should be used in the `:depends` of a task calling a nbb script. The
 task ensures that the transit db is rebuilt if any graph file is detected to be
 outdated by their timestamp. Cache building is slow the first time as all files
 need to be parsed. Subsequent updates are quick because only files modified
-since the last cache need to be re-parsed.
+since the last cache are re-parsed.
 
 #### `logseq.bb-tasks.nbb.watch`
 
