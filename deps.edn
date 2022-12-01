@@ -1,5 +1,5 @@
 {:deps
- {djblue/portal {:mvn/version "0.34.2"}
+ {djblue/portal {:mvn/version "0.35.0"}
   borkdude/carve
   {:git/url "https://github.com/borkdude/carve"
    :git/sha "9c11e4727bff22386899f048d1d50b7978d3ac9e"
@@ -7,7 +7,7 @@
   ;; needed by carve
   org.babashka/spec.alpha
   {:git/url "https://github.com/babashka/spec.alpha"
-   :git/sha "8df0712896f596680da7a32ae44bb000b7e45e68"}
+   :git/sha "1d9df099be4fbfd30b9b903642ad376373c16298"}
   me.tagaholic/dlint {:mvn/version "0.1.0"}
   io.lambdaforge/datalog-parser {:mvn/version "0.2.23"}}
 
