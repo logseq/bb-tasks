@@ -5,6 +5,7 @@ encapsulated in this ns"
             [datascript.core :as d]
             [logseq.graph-parser.cli :as gp-cli]
             [logseq.graph-parser :as graph-parser]
+            [clojure.string :as string]
             ["fs" :as fs]))
 
 (def ^:private cache-file
@@ -23,9 +24,11 @@ encapsulated in this ns"
   [dir changed-files]
   (if (fs/existsSync cache-file)
     (let [old-conn (d/conn-from-db (read-db))
-          files (map
-                 #(hash-map :file/path % :file/content (str (fs/readFileSync %)))
-                 changed-files)
+          files (->> changed-files
+                      ;; Can remove if the graph-parser filters with frontend.util.fs/ignored-path?
+                     (remove #(string/includes? % "logseq/bak"))
+                     (map #(hash-map :file/path %
+                                     :file/content (str (fs/readFileSync %)))))
           delete-blocks (fn [db file-page file-path uuid-blocks]
                           (into (graph-parser/get-blocks-to-delete db file-page file-path uuid-blocks)
                                 ;; Delete page to allow for page properties to be redefined

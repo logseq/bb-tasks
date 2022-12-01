@@ -9,7 +9,7 @@
   [& _args]
   (when-let [files (seq (fs/modified-since (fs/file "script/.cached-db-transit.json")
                                            (fs/glob "." "{pages,journals,assets,logseq,whiteboards,draws}/*")))]
-    (println (format "Updating db since %s file(s) changed!" (count files)))
+    (println "Updating db since files have changed...")
     (shell {:dir "script"} "yarn -s nbb-logseq -e"
            (str "(require '[logseq.bb-tasks.nbb.cached-db]) "
                 "(logseq.bb-tasks.nbb.cached-db/write-db \"..\" "
