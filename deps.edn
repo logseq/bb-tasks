@@ -4,16 +4,12 @@
   {:git/url "https://github.com/borkdude/carve"
    :git/sha "9c11e4727bff22386899f048d1d50b7978d3ac9e"
    :exclusions [clj-kondo/clj-kondo]}
-  ;; needed by carve
-  org.babashka/spec.alpha
-  {:git/url "https://github.com/babashka/spec.alpha"
-   :git/sha "1d9df099be4fbfd30b9b903642ad376373c16298"}
   me.tagaholic/dlint {:mvn/version "0.1.0"}
   io.lambdaforge/datalog-parser {:mvn/version "0.2.23"}}
 
  :aliases
  {:clj-kondo
-  {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2022.11.02"}}
+  {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2022.12.08"}}
    :main-opts  ["-m" "clj-kondo.main"]}
   :outdated
   {:replace-deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}

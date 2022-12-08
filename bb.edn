@@ -11,7 +11,7 @@
 
  :pods
  {org.babashka/fswatcher {:version "0.0.3"}
-  clj-kondo/clj-kondo {:version "2022.02.09"}}
+  clj-kondo/clj-kondo {:version "2022.10.05"}}
 
  :tasks
  {nbb:watch
