@@ -4,7 +4,7 @@
             [clojure.string :as string]
             [clojure.edn :as edn]))
 
-(defn -main
+(defn ^:api -main
   "Entry fn for logseq-import"
   [& args]
   (when (or (empty? args) (contains? (set args) "-h"))
@@ -20,6 +20,7 @@
       (System/exit 1))
 
     (doseq [{:file/keys [path content]} exported-files]
+      (println "Imported" path)
       (spit path content))))
 
 (when (= *file* (System/getProperty "babashka.file"))

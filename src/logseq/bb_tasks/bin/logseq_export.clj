@@ -4,7 +4,7 @@
             [clojure.string :as string]
             [clojure.pprint :as pprint]))
 
-(defn -main
+(defn ^:api -main
   "Entry fn for logseq-export"
   [& files]
   (when (or (empty? files) (contains? (set files) "-h"))

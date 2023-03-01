@@ -1,5 +1,5 @@
 {:deps
- {djblue/portal {:mvn/version "0.35.0"}
+ {djblue/portal {:mvn/version "0.36.0"}
   borkdude/carve
   {:git/url "https://github.com/borkdude/carve"
    :git/sha "9c11e4727bff22386899f048d1d50b7978d3ac9e"
@@ -9,7 +9,7 @@
 
  :aliases
  {:clj-kondo
-  {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2022.12.08"}}
+  {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2023.02.17"}}
    :main-opts  ["-m" "clj-kondo.main"]}
   :outdated
   {:replace-deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}

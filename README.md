@@ -1,6 +1,7 @@
 ## Description
 
 Library of reusable [babashka](https://github.com/babashka/babashka) tasks
+and [bbin](https://github.com/babashka/bbin) CLIs
 
 ## Setup
 
@@ -125,6 +126,28 @@ For an example, run the following:
 ```
 $ bb nbb:portal-watch /path/to/graph examples/print_file_query.cljs
 Watching /path/to/graph ...
+```
+
+### CLIs
+
+To use the CLIs, first install [bbin](https://github.com/babashka/bbin). Then install
+scripts in this repo:
+
+```sh
+bbin install https://raw.githubusercontent.com/logseq/bb-tasks/main/src/logseq/bb_tasks/bin/logseq_import.clj && \
+bbin install https://raw.githubusercontent.com/logseq/bb-tasks/main/src/logseq/bb_tasks/bin/logseq_export.clj
+```
+
+To use these scripts:
+
+```sh
+# From any graph directory, export any text files e.g.
+$ logseq-export journals/2022_03_22.md pages/Abraham\ Lincoln.md > export.edn
+
+# cd to another graph and then import the export.edn
+$ logseq-import ../previous-graph/export.edn
+Imported journals/2022_03_22.md
+Imported pages/Abraham Lincoln.md
 ```
 
 ## Contributing
