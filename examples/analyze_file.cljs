@@ -3,13 +3,23 @@
 It demonstrates some basic stats that could be useful to see for a file"
   (:require [logseq.graph-parser.cli :as gp-cli]
             [clojure.pprint :as pprint]
-            [datascript.core :as d]))
+            [datascript.core :as d]
+            ["child_process" :as child-process]))
+
+(defn- sh
+  "Run shell cmd synchronously and print to inherited streams by default. Aims
+    to be similar to babashka.tasks/shell
+TODO: Fail fast when process exits 1"
+  [cmd opts]
+  (child-process/spawnSync (first cmd)
+                           (clj->js (rest cmd))
+                           (clj->js (merge {:stdio "inherit"} opts))))
 
 (defn- colorize-or-pretty-print
   [results]
   (if (zero? (.-status (gp-cli/sh ["which" "puget"] {})))
-    (gp-cli/sh ["puget"] {:input (pr-str results)
-                          :stdio ["pipe" "inherit" "inherit"]})
+    (sh ["puget"] {:input (pr-str results)
+                   :stdio ["pipe" "inherit" "inherit"]})
     (pprint/pprint results)))
 
 (defn- get-all-page-properties
