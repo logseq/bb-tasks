@@ -2,7 +2,7 @@
  {djblue/portal {:mvn/version "0.57.1"}
   borkdude/carve
   {:git/url "https://github.com/borkdude/carve"
-   :git/sha "9c11e4727bff22386899f048d1d50b7978d3ac9e"
+   :git/sha "fdd1d0bc432f63db69e3a72167ef5e46f10dfba7"
    :exclusions [clj-kondo/clj-kondo]}
   me.tagaholic/dlint {:mvn/version "0.1.0"}
   io.replikativ/datalog-parser {:mvn/version "0.2.29"}}
