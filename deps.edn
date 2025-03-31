@@ -1,15 +1,15 @@
 {:deps
- {djblue/portal {:mvn/version "0.57.1"}
+ {djblue/portal {:mvn/version "0.58.5"}
   borkdude/carve
   {:git/url "https://github.com/borkdude/carve"
    :git/sha "fdd1d0bc432f63db69e3a72167ef5e46f10dfba7"
    :exclusions [clj-kondo/clj-kondo]}
   me.tagaholic/dlint {:mvn/version "0.1.0"}
-  io.replikativ/datalog-parser {:mvn/version "0.2.29"}}
+  io.replikativ/datalog-parser {:mvn/version "0.2.30"}}
 
  :aliases
  {:clj-kondo
-  {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2024.08.01"}}
+  {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2025.02.20"}}
    :main-opts  ["-m" "clj-kondo.main"]}
   :outdated
   {:replace-deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}
