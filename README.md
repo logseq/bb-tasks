@@ -72,7 +72,7 @@ cached db, nbb CI processes also benefit from the speed up.
 
 To set this up in your graph:
 - Create a `script/` directory and copy all the files in [this example's script/](https://github.com/logseq/docs/tree/master/script) to it.
-- `cd script && yarn install && cd -`
+- `cd script && pnpm install && cd -`
 - Copy [this example's bb.edn](https://github.com/logseq/docs/blob/master/bb.edn) to bb.edn
 - Change the implementation of `script/query.cljs` to queries specific to your graph. Some notes:
   - `(cached-db/read-db)` is necessary to read the cached db.
@@ -96,7 +96,7 @@ start to behave like intelligent assistants as they understand the data in your 
 
 Tasks in this namespace require installing `nbb-logseq` e.g. `npm install -g
 @logseq/nbb-logseq`. For the examples in this ns, there is a one time setup of
-`cd examples && yarn install && cd -`.
+`cd examples && pnpm install && cd -`.
 
 ##### `logseq.bb-tasks.nbb.watch/watch`
 

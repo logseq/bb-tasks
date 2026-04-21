@@ -11,8 +11,8 @@
   ;; distinct b/c sometimes namespaces are duplicated with .cljc analysis
   (doseq [n (distinct namespaces)]
     (println "Requiring" n "...")
-    ;; Run from current dir so that yarn command runs correctly
-    (shell {:dir dir} "yarn nbb-logseq -cp" classpath "-e" (format "(require '[%s])" n)))
+    ;; Run from current dir so that pnpm command runs correctly
+    (shell {:dir dir} "pnpm exec nbb-logseq -cp" classpath "-e" (format "(require '[%s])" n)))
   (println "Success!"))
 
 (defn load-all-namespaces
